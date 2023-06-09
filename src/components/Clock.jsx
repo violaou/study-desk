@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import '../App.css'
-import { Button, Heading } from '@chakra-ui/react'
+import { Button, HStack, Heading } from '@chakra-ui/react'
 import { CgSandClock } from 'react-icons/cg'
 
 export default function Clock() {
@@ -26,8 +26,8 @@ export default function Clock() {
   }, [showSeconds])
 
   return (
-    <>
-      <Heading>{time}</Heading>
+    <HStack>
+      <Heading fontSize='xl'>{time}</Heading>
       <Button
         size="xs"
         variant="outline"
@@ -36,6 +36,6 @@ export default function Clock() {
       >
         {showSeconds ? 'Hide seconds' : 'Show seconds'}
       </Button>
-    </>
+    </HStack>
   )
 }

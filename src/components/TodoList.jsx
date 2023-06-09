@@ -9,15 +9,20 @@ import {
   InputRightElement,
   InputGroup,
   ButtonGroup,
+  Box,
+  StackDivider,
+  HStack,
+  Checkbox,
 } from '@chakra-ui/react'
-import { GrFormAdd } from 'react-icons/gr'
+import { GrFormAdd, GrFormCheckmark } from 'react-icons/gr'
+import TodoItem from './TodoItem'
 import '../App.css'
 
 const initialValues = [
-  { id: '1', name: 'name 1 hi', email: '' },
-  { id: '2', name: 'name 1 hi', email: 'email@smail.com' },
-  { id: '3', name: 'name2', email: 'email@smail.com' },
-  { id: '4', name: 'viola', email: 'email@smail.com' },
+  { id: '1', text: 'name 1 hi', email: '' },
+  { id: '2', text: 'name 1 hi', email: 'email@smail.com' },
+  { id: '3', text: 'name2', email: 'email@smail.com' },
+  { id: '4', text: 'viola', email: 'email@smail.com' },
 ]
 export default function TodoList() {
   const [values, setValues] = useState(initialValues)
@@ -51,45 +56,40 @@ export default function TodoList() {
   }
 
   return (
-    <>
+    <Stack spacing={'24px'} onSubmit={addPerson}>
       <Heading>What do you need to do? </Heading>
-      <Stack spacing={3} onSubmit={addPerson}>
-        <InputGroup size="sm">
-          <Input
-            placeholder="Finish Task function"
-            size="sm"
-            variant="filled"
-          />
-          <InputRightElement width="5.5rem">
-            <ButtonGroup size="sm" isAttached>
-              <Button h="1.75rem" size="sm" onClick={handleClick}>
-                Add
-              </Button>
-              <IconButton
-                h="1.75rem"
-                size="sm"
-                aria-label="Todo Options"
-                icon={<GrFormAdd />}
-              />
-            </ButtonGroup>
-          </InputRightElement>
-        </InputGroup>
-      </Stack>
-      {/* <form style={divStyle} onSubmit={addPerson}>
-        <label>What do you need to do? </label>
-        <input type="text" name="name" placeholder="name"></input>
-        <input type="submit"></input>
-      </form> */}
-      {values && (
-        <>
-          {values.map(({ id, name, email }) => (
-            <Text key={id}>
-              {name}, email: {email}, id: {id}
-              <button onClick={() => removeMe(id)}>x</button>
-            </Text>
-          ))}
-        </>
-      )}
-    </>
+      <InputGroup size='sm'>
+        <Input placeholder='Finish Task function' size='sm' variant='filled' />
+        <InputRightElement width='5.5rem'>
+          <ButtonGroup size='sm' isAttached variant='ghost'>
+            <Button h='1.75rem' size='sm' onClick={handleClick}>
+              Add
+            </Button>
+            <IconButton
+              h='1.75rem'
+              size='sm'
+              aria-label='Todo Options'
+              icon={<GrFormAdd />}
+            />
+          </ButtonGroup>
+        </InputRightElement>
+      </InputGroup>
+      <Box shadow='md' borderWidth='1px'>
+        {values && (
+          <>
+            {values.map(({ id, text }) => (
+              <TodoItem
+                onClick={() => removeMe(id)}
+                onRemove={() => removeMe(id)}
+                id={id}
+                key={id}
+                text={text}
+              ></TodoItem>
+            ))}
+            <StackDivider borderColor='gray.200' />
+          </>
+        )}
+      </Box>
+    </Stack>
   )
 }
