@@ -1,8 +1,8 @@
 import { Heading, HStack, IconButton, useColorMode } from '@chakra-ui/react'
-import { MoonIcon } from '@chakra-ui/icons'
+import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 
 export default function Header() {
-  const { toggleColorMode } = useColorMode()
+  const { colorMode, toggleColorMode } = useColorMode()
   return (
     <HStack spacing={4} justifyContent='space-between'>
       <Heading>study desk</Heading>
@@ -12,7 +12,7 @@ export default function Header() {
         variant='ghost'
         color='#ccd0d5'
         _hover={{ bg: 'none', color: 'orange' }}
-        icon={<MoonIcon />}
+        icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
         onClick={toggleColorMode}
       />
     </HStack>

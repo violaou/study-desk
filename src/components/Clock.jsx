@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react'
 import '../App.css'
-import { Button, HStack, Heading } from '@chakra-ui/react'
+import { HStack, Heading, IconButton } from '@chakra-ui/react'
 import { CgSandClock } from 'react-icons/cg'
 
 export default function Clock() {
-  const [time, setTime] = useState(
-    new Date().toLocaleTimeString([], { timeStyle: 'medium' })
-  )
+  const [time, setTime] = useState(new Date().toLocaleTimeString([], { timeStyle: 'medium' }))
   const [showSeconds, setShowSec] = useState(true)
 
   function toggleSeconds() {
@@ -27,15 +25,10 @@ export default function Clock() {
 
   return (
     <HStack>
-      <Heading fontSize='xl'>{time}</Heading>
-      <Button
-        size="xs"
-        variant="outline"
-        leftIcon={<CgSandClock />}
-        onClick={toggleSeconds}
-      >
+      <Heading fontSize='2xl'>{time}</Heading>
+      <IconButton size='xs' variant='outline' icon={<CgSandClock />} onClick={toggleSeconds}>
         {showSeconds ? 'Hide seconds' : 'Show seconds'}
-      </Button>
+      </IconButton>
     </HStack>
   )
 }
