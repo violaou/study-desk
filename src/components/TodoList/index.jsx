@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import {
   Heading,
   Stack,
@@ -24,11 +24,6 @@ export default function TodoList() {
   const [values, setValues] = useState(initialValues)
   const [inputValue, setInputValue] = useState('')
 
-  useEffect(() => {
-    // console.log('useEffect')
-    // isOpen = true
-  }, [])
-
   function removeMe(removeId) {
     const newList = values.filter(({ id }) => {
       return id !== removeId
@@ -49,6 +44,7 @@ export default function TodoList() {
 
   const handleChange = (e) => setInputValue(e.target.value)
   const handleClick = () => addTask(inputValue)
+  const clearAll = () => setValues([])
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       addTask(inputValue)
@@ -57,7 +53,12 @@ export default function TodoList() {
 
   return (
     <Stack spacing={'6'} minW='sm' maxW='md'>
-      <Heading>Goals</Heading>
+      <Box display='flex' justifyContent='space-between' alignItems='baseline'>
+        <Heading>Goals</Heading>
+        <Button size='xs' variant='link' onClick={clearAll}>
+          clear all
+        </Button>
+      </Box>
       <InputGroup size='sm'>
         <Input
           placeholder='"Add Todo Function"'
@@ -72,7 +73,7 @@ export default function TodoList() {
         <InputRightElement width='5.5rem'>
           <ButtonGroup size='sm' isAttached variant='ghost'>
             <Button h='1.75rem' size='sm' onClick={handleClick}>
-              <Text as='b'>Add</Text>
+              <Text as='b'>add</Text>
             </Button>
             <IconButton h='1.75rem' size='sm' aria-label='Todo Options' icon={<AddIcon />} />
           </ButtonGroup>
@@ -80,8 +81,27 @@ export default function TodoList() {
       </InputGroup>
       <Divider />
       {/* List items */}
-      {/* <Box as={motion.div} animation={`${animationKeyframes} 0.5s ease-in-out 1`}> */}
-      <Box>
+      <Box
+        maxH='50vh'
+        overflowY='auto'
+        css={{
+          '&::-webkit-scrollbar': {
+            width: '2px',
+          },
+          '&::-webkit-scrollbar-track': {
+            backgroundColor: 'transparent',
+          },
+          '&::-webkit-scrollbar-thumb': {
+            // background: scrollbarColor,
+            backgroundColor: '#a6a9ab7c',
+            borderRadius: '24px',
+          },
+          '&::-webkit-scrollbar-thumb:hover': {
+            backgroundColor: '#a8bbbf',
+            borderRadius: '24px',
+          },
+        }}
+      >
         {values.length > 0 ? (
           <>
             {values.map(({ id, text }) => (
@@ -89,7 +109,9 @@ export default function TodoList() {
             ))}
           </>
         ) : (
-          <Text as='i'>None listed!</Text>
+          <Text as='i' alignSelf='center' opacity='0.2'>
+            none listed
+          </Text>
         )}
       </Box>
     </Stack>

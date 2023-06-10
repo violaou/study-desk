@@ -1,16 +1,20 @@
 import PropTypes from 'prop-types'
-import { HStack, Checkbox, IconButton, Divider, useColorMode, Box, keyframes } from '@chakra-ui/react'
+import { HStack, Checkbox, IconButton, useColorMode, Box, keyframes, usePrefersReducedMotion } from '@chakra-ui/react'
 import { RiDeleteBin4Line } from 'react-icons/ri'
 import { motion } from 'framer-motion'
 
-export default function TodoItem({ text, onRemove }) {
-  const { colorMode } = useColorMode()
-  const animationKeyframes = keyframes`
+const animationKeyframes = keyframes`
   0% { transform: translateY(-20px); opacity: 0; }
   100% { transform: translateY(0px); opacity: 1;}
   `
+
+export default function TodoItem({ text, onRemove }) {
+  const { colorMode } = useColorMode()
+  const animation = usePrefersReducedMotion() ? undefined : `${animationKeyframes} 0.5s ease-in-out 1`
+
+  // box does not support framer motion props for now (ie: exit) motionProps={{ exit: { opacity: 0, transition: { duration: 0.1 } } }}>
   return (
-    <Box as={motion.div} animation={`${animationKeyframes} 0.5s ease-in-out 1`}>
+    <Box as={motion.div} animation={animation}>
       <HStack
         justifyContent='space-between'
         // backgroundColor={'whiteAlpha.900'}
@@ -28,7 +32,7 @@ export default function TodoItem({ text, onRemove }) {
           icon={<RiDeleteBin4Line />}
         />
       </HStack>
-      <Divider borderColor='gray.200' />
+      {/* <Divider borderColor='gray.200' /> */}
     </Box>
   )
 }
