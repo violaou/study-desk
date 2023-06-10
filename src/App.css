@@ -8,13 +8,9 @@
   left: 0;
   right: 0;
   height: 100vh;
-  background-image: url("https://media.tenor.com/4BB6t5J52mkAAAAC/turn-around-anime.gif");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  /* Add the blur effect */
-  filter: blur(10px);
-  -webkit-filter: blur(10px);
   z-index: -1;
   display: block;
 }

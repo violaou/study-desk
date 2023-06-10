@@ -16,14 +16,18 @@ import { AddIcon } from '@chakra-ui/icons'
 import TodoItem from './TodoItem'
 import { v4 as uuidv4 } from 'uuid'
 
-const initialValues = [{ id: '1', text: 'name 1 hi' }]
+const initialValues = [
+  { id: '1', text: 'name 1 hi' },
+  { id: '13', text: 'name 1 hi' },
+]
 export default function TodoList() {
   const [values, setValues] = useState(initialValues)
   const [inputValue, setInputValue] = useState('')
 
   useEffect(() => {
     // console.log('useEffect')
-  }, [values])
+    // isOpen = true
+  }, [])
 
   function removeMe(removeId) {
     const newList = values.filter(({ id }) => {
@@ -52,8 +56,8 @@ export default function TodoList() {
   }
 
   return (
-    <Stack spacing={'6'}>
-      <Heading>What are your goals? </Heading>
+    <Stack spacing={'6'} minW='sm' maxW='md'>
+      <Heading>Goals</Heading>
       <InputGroup size='sm'>
         <Input
           placeholder='"Add Todo Function"'
@@ -75,6 +79,8 @@ export default function TodoList() {
         </InputRightElement>
       </InputGroup>
       <Divider />
+      {/* List items */}
+      {/* <Box as={motion.div} animation={`${animationKeyframes} 0.5s ease-in-out 1`}> */}
       <Box>
         {values.length > 0 ? (
           <>
