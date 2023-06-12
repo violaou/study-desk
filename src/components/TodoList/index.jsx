@@ -17,8 +17,12 @@ import TodoItem from './TodoItem'
 import { v4 as uuidv4 } from 'uuid'
 
 const initialValues = [
-  { id: '1', text: 'name 1 hi' },
-  { id: '13', text: 'name 1 hi' },
+  { id: '1', text: 'soptify' },
+  { id: '13', text: 'button for cafe noise' },
+  { id: '134', text: 'rain sounds' },
+  { id: '1324234', text: 'set your own background' },
+  { id: 'we2345', text: 'focus counter' },
+  { id: '1334534524234', text: 'make fullscreen button/exit fullscreen' },
 ]
 export default function TodoList() {
   const [values, setValues] = useState(initialValues)

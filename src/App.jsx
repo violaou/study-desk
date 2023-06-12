@@ -6,8 +6,9 @@ import { GIFS } from './assets/constants'
 import './App.css'
 
 function App() {
+  // const [loaded, setLoaded] = setState(false)
   const { colorMode } = useColorMode()
-  const randomBGURL = GIFS[(GIFS.length * Math.random()) | 0]
+  const randomBgURL = GIFS[(GIFS.length * Math.random()) | 0]
   return (
     <VStack
       className='content'
@@ -15,7 +16,7 @@ function App() {
       filter={'blur(0.3px)'}
       _before={{
         filter: colorMode === 'light' ? 'blur(10px) opacity(0.4)' : 'blur(10px) brightness(0.5)',
-        backgroundImage: `URL(${randomBGURL})`,
+        backgroundImage: `URL(${randomBgURL})`,
       }}
     >
       <Header />
