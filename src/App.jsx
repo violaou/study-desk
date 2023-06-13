@@ -1,6 +1,4 @@
-import Clock from './components/Clock'
-import TodoList from './components/TodoList'
-import Header from './components/Header'
+import { Clock, TodoList, Header, SoundBoard } from './components'
 import { useColorMode, VStack } from '@chakra-ui/react'
 import { GIFS } from './assets/constants'
 import './App.css'
@@ -22,6 +20,7 @@ function App() {
       <Header />
       <Clock />
       <TodoList />
+      <SoundBoard />
     </VStack>
   )
 }
