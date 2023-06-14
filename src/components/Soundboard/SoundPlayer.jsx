@@ -5,6 +5,7 @@ import useAudio from '../../custom hooks/useAudio'
 import { Howl } from 'howler'
 
 export default function SoundPlayer({ file }) {
+  //todo: use customhook for interaction instead
   const sound = new Howl({
     src: [file],
     volume: 0.3,
