@@ -1,4 +1,4 @@
-export { Clock } from './components/Clock'
-export { TodoList } from './components/TodoList'
-export { Header } from './components/Header'
-export { SoundBoard } from './components/SoundBoard'
+export { default as Clock } from './Clock'
+export { default as TodoList } from './TodoList/index'
+export { default as Header } from './Header'
+export { default as SoundBoard } from './Soundboard/index'
