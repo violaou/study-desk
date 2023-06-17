@@ -1,21 +1,28 @@
 import PropTypes from 'prop-types'
-import { Switch, useColorMode } from '@chakra-ui/react'
-import React, { useState } from 'react'
-import useAudio from '../../custom hooks/useAudio'
-import { Howl } from 'howler'
+import { Switch } from '@chakra-ui/react'
+import { useEffect } from 'react'
+import { useAudioPlayer } from 'react-use-audio-player'
+import useInteraction from '../../custom hooks/useInteraction'
 
 export default function SoundPlayer({ file }) {
-  //todo: use customhook for interaction instead
-  const sound = new Howl({
-    src: [file],
-    volume: 0.3,
-    loop: true,
-  })
+  const interacted = useInteraction()
+  const audio = useAudioPlayer()
+
+  useEffect(() => {
+    if (interacted) {
+      audio.load(file, {
+        volume: 0.5,
+        autoplay: false,
+      })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [interacted, file])
+
   function onClick() {
-    sound.play()
+    audio.togglePlayPause()
   }
 
-  return <Switch onClick={onClick} aria-labelledby={file} />
+  return <Switch onChange={onClick} aria-labelledby={file} />
 }
 
 SoundPlayer.propTypes = {

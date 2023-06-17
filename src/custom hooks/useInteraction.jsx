@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const ev = ['mousedown', 'touchstart']
+const ev = ['mousedown', 'touchstart', 'wheel']
 
 export default function useInteraction() {
   const [ready, setReady] = useState(false)
@@ -10,7 +10,6 @@ export default function useInteraction() {
       setReady(true)
     }
   }
-
   useEffect(() => {
     ev.forEach((event) => {
       document.addEventListener(event, listener)
