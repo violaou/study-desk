@@ -5,9 +5,11 @@ import { useEffect } from 'react'
 import { useAudioPlayer } from 'react-use-audio-player'
 import useInteraction from '../../custom hooks/useInteraction'
 
-export default function SoundPlayer({ file, options }) {
+export default function SoundPlayer(params) {
+  const { file, options, ...streamingOptions } = params
   const interacted = useInteraction()
   const audio = useAudioPlayer()
+  // const [volume, setVolume] = useState(50)
 
   useEffect(() => {
     if (interacted) {
@@ -16,14 +18,26 @@ export default function SoundPlayer({ file, options }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [interacted, file])
 
-  function onClick() {
+  function adjustVolume(val) {
+    audio.setVolume(val / 100)
+  }
+
+  function playSong() {
     audio.togglePlayPause()
   }
 
   return (
     <Box display='flex' alignItems='center'>
-      <Switch onChange={onClick} aria-labelledby={file} />
-      <Slider aria-label={file} defaultValue={100} min={0} max={100} maxW='50%'>
+      <Switch onChange={playSong} aria-labelledby={file} />
+      <Slider
+        marginLeft='10px'
+        aria-label={file}
+        defaultValue={50}
+        min={0}
+        max={100}
+        maxW='50%'
+        onChange={adjustVolume}
+      >
         <SliderTrack>
           <SliderFilledTrack bg='grey' />
         </SliderTrack>

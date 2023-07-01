@@ -3,15 +3,20 @@ import SoundPlayer from './SoundPlayer'
 import { GoMute } from 'react-icons/go'
 
 // https://www.youtube.com/watch?v=0fFUfM0u3Sk
-const CAFE = 'src/assets/audio/restaurant-ambience_binaural.mp3'
-const LIGHT_RAIN = 'src/assets/audio/mixkit-light-rain-loop-1253.wav'
-const HEAVY_RAIN = 'src/assets/audio/mixkit-intense-rain-loop-1246.wav'
+const CAFE = { id: 'cafe', location: 'src/assets/audio/restaurant-ambience_binaural.mp3', name: 'Cafe' }
+const LIGHT_RAIN = { id: 'lightRain', location: 'src/assets/audio/mixkit-light-rain-loop-1253.wav', name: 'Light Rain' }
+const HEAVY_RAIN = {
+  id: 'heavyRain',
+  location: 'src/assets/audio/mixkit-intense-rain-loop-1246.wav',
+  name: 'Heavy Rain',
+}
 
 export default function SoundBoard() {
   const defaultOptions = {
     volume: 0.5,
     loop: true,
   }
+  const defaultSounds = [CAFE, LIGHT_RAIN, HEAVY_RAIN]
   function muteAll() {}
 
   return (
@@ -22,12 +27,14 @@ export default function SoundBoard() {
           mute all
         </IconButton>
       </Box>
-      <Text>Cafe</Text>
-      <SoundPlayer id='cafe' file={CAFE} options={defaultOptions} />
-      <Text>Light Rain</Text>
-      <SoundPlayer id='lightRain' file={LIGHT_RAIN} options={defaultOptions} />
-      <Text>Heavy Rain</Text>
-      <SoundPlayer id='heavyRain' file={HEAVY_RAIN} options={defaultOptions} />
+      {defaultSounds.map(({ id, location, name }) => {
+        return (
+          <>
+            <Text>{name}</Text>
+            <SoundPlayer id={id} file={location} options={defaultOptions} />
+          </>
+        )
+      })}
     </Box>
   )
 }
