@@ -40,8 +40,6 @@ export default function TodoList() {
       const newEntry = { id: uuidv4(), text: inputValue }
       const newValues = values.concat([newEntry])
       setValues(newValues)
-
-      console.log(newValues)
     }
     setInputValue('')
   }
@@ -53,6 +51,24 @@ export default function TodoList() {
     if (e.key === 'Enter') {
       addTask(inputValue)
     }
+  }
+
+  const scrollbarCss = {
+    '&::-webkit-scrollbar': {
+      width: '2px',
+    },
+    '&::-webkit-scrollbar-track': {
+      backgroundColor: 'transparent',
+    },
+    '&::-webkit-scrollbar-thumb': {
+      // background: scrollbarColor,
+      backgroundColor: '#a6a9ab7c',
+      borderRadius: '24px',
+    },
+    '&::-webkit-scrollbar-thumb:hover': {
+      backgroundColor: '#a8bbbf',
+      borderRadius: '24px',
+    },
   }
 
   return (
@@ -85,27 +101,7 @@ export default function TodoList() {
       </InputGroup>
       <Divider />
       {/* List items */}
-      <Box
-        maxH='50vh'
-        overflowY='auto'
-        css={{
-          '&::-webkit-scrollbar': {
-            width: '2px',
-          },
-          '&::-webkit-scrollbar-track': {
-            backgroundColor: 'transparent',
-          },
-          '&::-webkit-scrollbar-thumb': {
-            // background: scrollbarColor,
-            backgroundColor: '#a6a9ab7c',
-            borderRadius: '24px',
-          },
-          '&::-webkit-scrollbar-thumb:hover': {
-            backgroundColor: '#a8bbbf',
-            borderRadius: '24px',
-          },
-        }}
-      >
+      <Box maxH='50vh' overflowY='auto' css={scrollbarCss}>
         {values.length > 0 ? (
           <>
             {values.map(({ id, text }) => (
@@ -114,7 +110,7 @@ export default function TodoList() {
           </>
         ) : (
           <Text as='i' alignSelf='center' opacity='0.2'>
-            none listed
+            none listed - add something to do!
           </Text>
         )}
       </Box>

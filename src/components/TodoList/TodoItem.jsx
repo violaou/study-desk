@@ -32,7 +32,6 @@ export default function TodoItem({ text, onRemove }) {
           icon={<RiDeleteBin4Line />}
         />
       </HStack>
-      {/* <Divider borderColor='gray.200' /> */}
     </Box>
   )
 }

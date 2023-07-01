@@ -6,10 +6,9 @@ import { useAudioPlayer } from 'react-use-audio-player'
 import useInteraction from '../../custom hooks/useInteraction'
 
 export default function SoundPlayer(params) {
-  const { file, options, ...streamingOptions } = params
+  const { file, options } = params
   const interacted = useInteraction()
   const audio = useAudioPlayer()
-  // const [volume, setVolume] = useState(50)
 
   useEffect(() => {
     if (interacted) {
@@ -21,11 +20,9 @@ export default function SoundPlayer(params) {
   function adjustVolume(val) {
     audio.setVolume(val / 100)
   }
-
   function playSong() {
     audio.togglePlayPause()
   }
-
   return (
     <Box display='flex' alignItems='center'>
       <Switch onChange={playSong} aria-labelledby={file} />

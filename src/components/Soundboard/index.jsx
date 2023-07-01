@@ -1,6 +1,6 @@
-import { Text, Box, Heading, IconButton, Icon } from '@chakra-ui/react'
+import { Text, Box, Heading } from '@chakra-ui/react'
 import SoundPlayer from './SoundPlayer'
-import { GoMute } from 'react-icons/go'
+// import { GoMute } from 'react-icons/go'
 
 // https://www.youtube.com/watch?v=0fFUfM0u3Sk
 const CAFE = { id: 'cafe', location: 'src/assets/audio/restaurant-ambience_binaural.mp3', name: 'Cafe' }
@@ -10,31 +10,27 @@ const HEAVY_RAIN = {
   location: 'src/assets/audio/mixkit-intense-rain-loop-1246.wav',
   name: 'Heavy Rain',
 }
+const defaultSounds = [CAFE, LIGHT_RAIN, HEAVY_RAIN]
+const defaultOptions = {
+  volume: 0.5,
+  loop: true,
+}
 
 export default function SoundBoard() {
-  const defaultOptions = {
-    volume: 0.5,
-    loop: true,
-  }
-  const defaultSounds = [CAFE, LIGHT_RAIN, HEAVY_RAIN]
-  function muteAll() {}
-
   return (
     <Box spacing={6} justifyContent='space-between' minWidth='20vw'>
       <Box display='flex' justifyContent='space-between' alignItems='baseline'>
-        <Heading size='md'>Sounds</Heading>
-        <IconButton size='xs' aria-label='mute-all' variant='link' onClick={muteAll} icon={<Icon as={GoMute} />}>
-          mute all
-        </IconButton>
+        <Heading size='md'>Ambient Sounds</Heading>
       </Box>
       {defaultSounds.map(({ id, location, name }) => {
         return (
-          <>
+          <div key={id}>
             <Text>{name}</Text>
             <SoundPlayer id={id} file={location} options={defaultOptions} />
-          </>
+          </div>
         )
       })}
+      {/* <SoundPlayer id='3r_Z5AYJJd4' file='3r_Z5AYJJd4' options={defaultOptions} stream /> */}
     </Box>
   )
 }
