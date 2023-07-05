@@ -19,13 +19,13 @@ const defaultOptions = {
 export default function SoundBoard() {
   return (
     <Box spacing={6} justifyContent='space-between' minWidth='20vw'>
-      <Box display='flex' justifyContent='space-between' alignItems='baseline'>
+      <Box display='flex' justifyContent='space-between' alignItems='baseline' paddingBottom='var(--chakra-space-4)'>
         <Heading size='md'>Ambient Sounds</Heading>
       </Box>
       {defaultSounds.map(({ id, location, name }) => {
         return (
           <div key={id}>
-            <Text>{name}</Text>
+            <Text fontSize='sm'>{name}</Text>
             <SoundPlayer id={id} file={location} options={defaultOptions} />
           </div>
         )

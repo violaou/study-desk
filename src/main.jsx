@@ -1,21 +1,29 @@
-// import React from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, theme as chakraTheme, extendTheme } from '@chakra-ui/react'
+import '@fontsource-variable/martian-mono'
 
-import { extendTheme } from '@chakra-ui/react'
 const theme = extendTheme({
   fonts: {
-    heading: `'Martian Mono Variable', monospace`,
-    body: `'Martian Mono Variable', sans-serif`,
+    ...chakraTheme.fonts,
+    heading: `"Martian Mono Variable", monospace`,
+    subHeading: `"Martian Mono Variable", monospace`,
+    body: `"Martian Mono Variable", monospace`,
+    mono: `"Martian Mono Variable", monospace`,
+  },
+  textStyles: {
+    p: {
+      'font-family': 'var(--chakra-fonts-body)',
+    },
   },
 })
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  // <React.StrictMode>
-  <ChakraProvider theme={theme}>
-    <App />
-  </ChakraProvider>
-  // </React.StrictMode>
+  <React.StrictMode>
+    <ChakraProvider theme={theme}>
+      <App />
+    </ChakraProvider>
+  </React.StrictMode>
 )

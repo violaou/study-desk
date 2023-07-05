@@ -1,7 +1,3 @@
-#root {
-  height: 100vh;
-  margin: 0 auto;
-}
 .content:before {
   content: "";
   position: fixed;

@@ -109,7 +109,7 @@ export default function TodoList() {
             ))}
           </>
         ) : (
-          <Text as='i' alignSelf='center' opacity='0.2'>
+          <Text fontSize='sm' as='i' alignSelf='center' opacity='0.2'>
             none listed - add something to do!
           </Text>
         )}

@@ -1,10 +1,9 @@
 import { Clock, TodoList, Header, SoundBoard } from './components'
-import { useColorMode, VStack } from '@chakra-ui/react'
+import { Box, useColorMode, VStack } from '@chakra-ui/react'
 import { GIFS } from './assets/constants'
 import './App.css'
 
 function App() {
-  // const [loaded, setLoaded] = setState(false)
   const { colorMode } = useColorMode()
   const randomBgURL = GIFS[(GIFS.length * Math.random()) | 0]
   return (
@@ -19,8 +18,17 @@ function App() {
     >
       <Header />
       <Clock />
-      <TodoList />
-      <SoundBoard />
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          width: '100%',
+          padding: 'var(--chakra-space-8)',
+        }}
+      >
+        <TodoList />
+        <SoundBoard />
+      </Box>
     </VStack>
   )
 }
