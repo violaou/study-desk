@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import '../App.css'
-import { HStack, Heading, IconButton } from '@chakra-ui/react'
+import { HStack, Heading, Button, IconButton, Tooltip, Text } from '@chakra-ui/react'
 import { CgSandClock } from 'react-icons/cg'
 
 export default function Clock() {
@@ -25,10 +25,17 @@ export default function Clock() {
 
   return (
     <HStack>
-      <Heading fontSize='2xl'>{time}</Heading>
-      <IconButton size='xs' variant='outline' icon={<CgSandClock />} onClick={toggleSeconds}>
-        {showSeconds ? 'Hide seconds' : 'Show seconds'}
-      </IconButton>
+      <Tooltip label={`Toggle to ${showSeconds ? 'hide' : 'show'} seconds`} openDelay={200}>
+        <Button variant='unstyled' onClick={toggleSeconds} sx={{}}>
+          <Heading fontSize='2xl'>{time}</Heading>
+        </Button>
+      </Tooltip>
+      <Text className='unselectable'> | </Text>
+      <Tooltip label='Pomodoro Timer'>
+        <IconButton size='' variant='unstyled' icon={<CgSandClock />} openDelay={200} onClick={() => {}}>
+          {showSeconds ? 'Hide seconds' : 'Show seconds'}
+        </IconButton>
+      </Tooltip>
     </HStack>
   )
 }

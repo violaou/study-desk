@@ -25,7 +25,9 @@ export default function SoundBoard() {
       {defaultSounds.map(({ id, location, name }) => {
         return (
           <div key={id}>
-            <Text fontSize='sm'>{name}</Text>
+            <Text className='unselectable' fontSize='sm'>
+              {name}
+            </Text>
             <SoundPlayer id={id} file={location} options={defaultOptions} />
           </div>
         )

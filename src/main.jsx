@@ -2,8 +2,17 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import { ChakraProvider, theme as chakraTheme, extendTheme } from '@chakra-ui/react'
+import { ChakraProvider, theme as chakraTheme, extendTheme, defineStyle, defineStyleConfig } from '@chakra-ui/react'
 import '@fontsource-variable/martian-mono'
+
+const unselectable = defineStyle({
+  userSelect: 'none',
+})
+export const headingTheme = defineStyleConfig({
+  variants: {
+    unselectable: unselectable,
+  },
+})
 
 const theme = extendTheme({
   fonts: {
@@ -18,6 +27,7 @@ const theme = extendTheme({
       'font-family': 'var(--chakra-fonts-body)',
     },
   },
+  components: { Heading: headingTheme },
 })
 
 ReactDOM.createRoot(document.getElementById('root')).render(

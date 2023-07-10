@@ -93,7 +93,9 @@ export default function TodoList() {
         <InputRightElement width='5.5rem'>
           <ButtonGroup size='sm' isAttached variant='ghost'>
             <Button h='1.75rem' size='sm' onClick={handleClick}>
-              <Text as='b'>add</Text>
+              <Text className='unselectable' as='b'>
+                add
+              </Text>
             </Button>
             <IconButton h='1.75rem' size='sm' aria-label='Todo Options' icon={<AddIcon />} />
           </ButtonGroup>
@@ -109,7 +111,7 @@ export default function TodoList() {
             ))}
           </>
         ) : (
-          <Text fontSize='sm' as='i' alignSelf='center' opacity='0.2'>
+          <Text className='unselectable' fontSize='sm' as='i' alignSelf='center' opacity='0.2'>
             none listed - add something to do!
           </Text>
         )}
