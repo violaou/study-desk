@@ -22,17 +22,33 @@ export default function Clock() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showSeconds])
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      const newDate = new Date().toLocaleTimeString([], {
+        timeStyle: showSeconds ? 'medium' : 'short',
+      })
+      setTime(newDate)
+    }, 1000)
+    return () => {
+      clearInterval(timerId)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showSeconds])
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <HStack>
-      <Tooltip label={`Toggle to ${showSeconds ? 'hide' : 'show'} seconds`} openDelay={200}>
-        <Button variant='unstyled' onClick={toggleSeconds} sx={{}}>
+      <Tooltip label={`${showSeconds ? 'Hide' : 'how'} seconds`} isOpen>
+        <Button variant='unstyled' onClick={toggleSeconds}>
           <Heading fontSize='2xl'>{time}</Heading>
         </Button>
       </Tooltip>
       <Text className='unselectable'> | </Text>
-      <Tooltip label='Pomodoro Timer'>
-        <IconButton size='' variant='unstyled' icon={<CgSandClock />} openDelay={200} onClick={() => {}}>
+      <Tooltip label='Pomodoro Timer' isOpen>
+        <IconButton size='' variant='unstyled' icon={<CgSandClock />} onClick={() => {}}>
           {showSeconds ? 'Hide seconds' : 'Show seconds'}
         </IconButton>
       </Tooltip>

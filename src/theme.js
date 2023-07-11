@@ -1,6 +1,6 @@
 // 1. import `extendTheme` function
 import { extendTheme } from '@chakra-ui/react'
-import { defineStyle, defineStyleConfig } from '@chakra-ui/styled-system'
+// import { defineStyle, defineStyleConfig } from '@chakra-ui/styled-system'
 
 // 2. Add your color mode config
 const config = {
