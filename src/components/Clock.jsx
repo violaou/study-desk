@@ -6,11 +6,14 @@ export default function Clock() {
   const [time, setTime] = useState(new Date().toLocaleTimeString([], { timeStyle: 'medium' }))
   const [showSeconds, setShowSec] = useState(true)
 
-  const [stopwatch, setStopwatch] = useState(0)
+  const [stopwatch, setStopwatch] = useState(20)
   const [runTimer, setRunTimer] = useState(false)
 
   function toggleSeconds() {
     setShowSec(!showSeconds)
+  }
+  function setTimer() {
+    setRunTimer(!runTimer)
   }
   useEffect(() => {
     const timerId = setInterval(() => {
@@ -32,22 +35,10 @@ export default function Clock() {
       timerId = setInterval(() => {
         setStopwatch(stopwatch - 1)
       }, 60000)
-    } else {
-      clearInterval(timerId) //TODO: pause
-    }
-    return () => {
-      clearInterval(timerId)
-    }
+    } // todo: pause
+    return () => clearInterval(timerId)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [runTimer])
-
-  function setTimer() {
-    setRunTimer(!runTimer)
-  }
-
-  // useEffect(() => {
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [])
+  }, [runTimer, stopwatch])
 
   return (
     <HStack>
