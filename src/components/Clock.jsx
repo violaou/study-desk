@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { HStack, Heading, Button, IconButton, Tooltip, Text } from '@chakra-ui/react'
 import { CgSandClock } from 'react-icons/cg'
+import isDev from '../utils'
 
 export default function Clock() {
   const [time, setTime] = useState(new Date().toLocaleTimeString([], { timeStyle: 'medium' }))
@@ -9,12 +10,7 @@ export default function Clock() {
   const [stopwatch, setStopwatch] = useState(20)
   const [runTimer, setRunTimer] = useState(false)
 
-  function toggleSeconds() {
-    setShowSec(!showSeconds)
-  }
-  function setTimer() {
-    setRunTimer(!runTimer)
-  }
+  const toggleSeconds = () => setShowSec(!showSeconds)
   useEffect(() => {
     const timerId = setInterval(() => {
       const newDate = new Date().toLocaleTimeString([], {
@@ -22,21 +18,22 @@ export default function Clock() {
       })
       setTime(newDate)
     }, 1000)
-    return () => {
-      clearInterval(timerId)
-    }
+    return () => clearInterval(timerId)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showSeconds])
 
+  const setTimer = () => {
+    setRunTimer(!runTimer)
+  }
   useEffect(() => {
-    // run timer when run is pressed
-    let timerId
+    let countdownId
     if (runTimer) {
-      timerId = setInterval(() => {
-        setStopwatch(stopwatch - 1)
-      }, 60000)
-    } // todo: pause
-    return () => clearInterval(timerId)
+      if (!stopwatch) return () => clearInterval(countdownId)
+      countdownId = setInterval(() => setStopwatch(stopwatch - 1), isDev() ? 100 : 60000)
+    } else {
+      setStopwatch(20)
+    }
+    return () => clearInterval(countdownId)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [runTimer, stopwatch])
 

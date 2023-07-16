@@ -1,6 +1,6 @@
 import { Clock, TodoList, Header, SoundBoard } from './components'
 import { Box, useColorMode, VStack } from '@chakra-ui/react'
-import { GIFS, VIGNETTE, LINES } from './assets/constants'
+import { GIFS, VIGNETTE, LINES } from './utils/constants'
 import './App.css'
 import { useEffect, useState } from 'react'
 
