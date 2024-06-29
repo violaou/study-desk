@@ -25,25 +25,24 @@ const defaultOptions = {
     loop: true,
 };
 
+const StyledPlayer = styled.div`
+    margin-top: 1rem;
+`;
+
 export default function SoundBoard() {
     return (
         <Box spacing={6} justifyContent="space-between" minWidth="20vw">
-            <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="baseline"
-                paddingBottom="var(--chakra-space-4)"
-            >
+            <Box display="flex" justifyContent="space-between" alignItems="baseline">
                 <Heading size="md">Ambient Sounds</Heading>
             </Box>
             {defaultSounds.map(({ id, location, name }) => {
                 return (
-                    <div key={id}>
+                    <StyledPlayer key={id}>
                         <Text className="unselectable" fontSize="sm">
                             {name}
                         </Text>
                         <SoundPlayer id={id} file={location} options={defaultOptions} />
-                    </div>
+                    </StyledPlayer>
                 );
             })}
             {/* <SoundPlayer id='3r_Z5AYJJd4' file='3r_Z5AYJJd4' options={defaultOptions} stream /> */}
