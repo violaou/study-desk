@@ -1,3 +1,3 @@
 export default function isDev() {
-  return import.meta.env.MODE === 'development'
+    return import.meta.env.MODE === 'development';
 }

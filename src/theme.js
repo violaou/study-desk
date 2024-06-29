@@ -1,14 +1,14 @@
 // 1. import `extendTheme` function
-import { extendTheme } from '@chakra-ui/react'
+import { extendTheme } from '@chakra-ui/react';
 // import { defineStyle, defineStyleConfig } from '@chakra-ui/styled-system'
 
 // 2. Add your color mode config
 const config = {
-  initialColorMode: 'system',
-  useSystemColorMode: false,
-}
+    initialColorMode: 'system',
+    useSystemColorMode: false,
+};
 
 // 3. extend the theme
-const theme = extendTheme({ config })
+const theme = extendTheme({ config });
 
-export default theme
+export default theme;
