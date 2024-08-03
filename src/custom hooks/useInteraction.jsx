@@ -1,19 +1,19 @@
-import { useEffect, useState } from 'react';
-const ev = ['mousedown', 'touchstart', 'wheel', 'scroll'];
+import { useEffect, useState } from 'react'
+const ev = ['mousedown', 'touchstart', 'wheel', 'scroll']
 
 export default function useInteraction() {
-    const [ready, setReady] = useState(false);
+  const [ready, setReady] = useState(false)
 
-    const listener = () => {
-        if (!ready) setReady(true);
-    };
-    useEffect(() => {
-        ev.forEach((e) => document.addEventListener(e, listener));
-        return () => {
-            ev.forEach((e) => document.removeEventListener(e, listener));
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+  const listener = () => {
+    if (!ready) setReady(true)
+  }
+  useEffect(() => {
+    ev.forEach((e) => document.addEventListener(e, listener))
+    return () => {
+      ev.forEach((e) => document.removeEventListener(e, listener))
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
-    return ready;
+  return ready
 }
