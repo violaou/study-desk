@@ -1,8 +1,43 @@
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 import { Clock, TodoList, Header, SoundBoard } from './components';
 import { Box, useColorMode, VStack } from '@chakra-ui/react';
 import { GIFS, VIGNETTE, LINES } from './utils/constants';
-import './App.css';
 import { useEffect, useState } from 'react';
+import './index.css';
+import {
+    ChakraProvider,
+    theme as chakraTheme,
+    extendTheme,
+    defineStyle,
+    defineStyleConfig,
+} from '@chakra-ui/react';
+import '@fontsource-variable/martian-mono';
+
+const unselectable = defineStyle({
+    userSelect: 'none',
+});
+export const headingTheme = defineStyleConfig({
+    variants: {
+        unselectable: unselectable,
+    },
+});
+
+const theme = extendTheme({
+    fonts: {
+        ...chakraTheme.fonts,
+        heading: `"Martian Mono Variable", monospace`,
+        subHeading: `"Martian Mono Variable", monospace`,
+        body: `"Martian Mono Variable", monospace`,
+        mono: `"Martian Mono Variable", monospace`,
+    },
+    textStyles: {
+        p: {
+            'font-family': 'var(--chakra-fonts-body)',
+        },
+    },
+    components: { Heading: headingTheme },
+});
 
 function App() {
     const { colorMode } = useColorMode();
@@ -52,5 +87,10 @@ function App() {
         </>
     );
 }
-
-export default App;
+ReactDOM.createRoot(document.getElementById('root')!).render(
+    <React.StrictMode>
+        <ChakraProvider theme={theme}>
+            <App />
+        </ChakraProvider>
+    </React.StrictMode>
+);

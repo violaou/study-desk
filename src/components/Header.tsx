@@ -8,7 +8,7 @@ const StyledHStack = styled(HStack)`
 export default function Header() {
     const { colorMode, toggleColorMode } = useColorMode();
     return (
-        <HStack spacing={4} justifyContent="space-between">
+        <StyledHStack spacing={4} justifyContent="space-between">
             <Heading>study desk</Heading>
             <IconButton
                 size="lg"
@@ -19,6 +19,6 @@ export default function Header() {
                 icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
                 onClick={toggleColorMode}
             />
-        </HStack>
+        </StyledHStack>
     );
 }

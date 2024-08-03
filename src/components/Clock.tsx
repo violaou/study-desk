@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { HStack, Heading, Button, IconButton, Tooltip, Text } from '@chakra-ui/react';
 import { CgSandClock } from 'react-icons/cg';
-import isDev from '../utils';
+import isDev from '../utils/utils';
 
 export default function Clock() {
     const [time, setTime] = useState(new Date().toLocaleTimeString([], { timeStyle: 'medium' }));

@@ -5,10 +5,7 @@ import { useEffect } from 'react';
 import { useAudioPlayer } from 'react-use-audio-player';
 import useInteraction from '../../custom hooks/useInteraction';
 
-/**
- * @param {{ file: any; options: any; }} params
- */
-export default function SoundPlayer(params) {
+export default function SoundPlayer(params: { file: string; options: any }) {
     const { file, options } = params;
     const interacted = useInteraction();
     const audio = useAudioPlayer();
@@ -17,13 +14,9 @@ export default function SoundPlayer(params) {
         if (interacted) {
             audio.load(file, { ...options });
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [interacted, file]);
 
-    /**
-     * @param {number} val
-     */
-    function adjustVolume(val) {
+    function adjustVolume(val: number) {
         audio.setVolume(val / 100);
     }
     function playSong() {
@@ -51,8 +44,3 @@ export default function SoundPlayer(params) {
         </Box>
     );
 }
-
-SoundPlayer.propTypes = {
-    file: PropTypes.string,
-    options: PropTypes.object,
-};

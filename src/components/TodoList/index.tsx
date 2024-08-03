@@ -16,23 +16,12 @@ import { AddIcon } from '@chakra-ui/icons';
 import TodoItem from './TodoItem';
 import { v4 as uuidv4 } from 'uuid';
 
-// todo: this needs to NOT be hardcorded
-const initialValues = [
-    { id: '1', text: 'spotify' },
-    { id: '13', text: 'button for cafe noise' },
-    { id: '134', text: 'rain sounds' },
-    { id: '1324234', text: 'set your own background' },
-    { id: 'we2345', text: 'focus counter' },
-    { id: '1334534524234', text: 'make fullscreen button/exit fullscreen' },
-];
 export default function TodoList() {
     const [values, setValues] = useState<any[]>([]);
     const [inputValue, setInputValue] = useState('');
 
-    function removeMe(removeId: string) {
-        const newList = values.filter(({ id }) => {
-            return id !== removeId;
-        });
+    function removeItem(taskId: string) {
+        const newList = values.filter(({ id }) => id !== taskId);
         setValues(newList);
     }
 
@@ -75,14 +64,14 @@ export default function TodoList() {
     return (
         <Stack spacing={'6'} minW="sm" maxW="md">
             <Box display="flex" justifyContent="space-between" alignItems="baseline">
-                <Heading>Goals</Heading>
+                <Heading size="md">Goals</Heading>
                 <Button size="xs" variant="link" onClick={clearAll}>
                     clear all
                 </Button>
             </Box>
             <InputGroup size="sm">
                 <Input
-                    placeholder='"Add Todo Function"'
+                    placeholder="What do you want to do?"
                     focusBorderColor="green.300"
                     size="sm"
                     variant="filled"
@@ -114,7 +103,12 @@ export default function TodoList() {
                 {values.length > 0 ? (
                     <>
                         {values.map(({ id, text }) => (
-                            <TodoItem onRemove={() => removeMe(id)} id={id} key={id} text={text} />
+                            <TodoItem
+                                onRemove={() => removeItem(id)}
+                                id={id}
+                                key={id}
+                                text={text}
+                            />
                         ))}
                     </>
                 ) : (
@@ -125,7 +119,7 @@ export default function TodoList() {
                         alignSelf="center"
                         opacity="0.9"
                     >
-                        none listed - add something to do!
+                        No tasks - add something to do!
                     </Text>
                 )}
             </Box>
