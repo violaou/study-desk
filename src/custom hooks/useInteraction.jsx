@@ -12,7 +12,6 @@ export default function useInteraction() {
     return () => {
       ev.forEach((e) => document.removeEventListener(e, listener))
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return ready

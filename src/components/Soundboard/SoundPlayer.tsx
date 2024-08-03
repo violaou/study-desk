@@ -1,17 +1,19 @@
-import PropTypes from 'prop-types'
 import {
-  Switch,
+  Box,
   Slider,
-  SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-  Box
+  SliderTrack,
+  Switch
 } from '@chakra-ui/react'
-import { MdGraphicEq } from 'react-icons/md'
+import React from 'react'
 import { useEffect } from 'react'
+import { MdGraphicEq } from 'react-icons/md'
 import { useAudioPlayer } from 'react-use-audio-player'
+
 import useInteraction from '../../custom hooks/useInteraction'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function SoundPlayer(params: { file: string; options: any }) {
   const { file, options } = params
   const interacted = useInteraction()

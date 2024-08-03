@@ -1,15 +1,16 @@
-import PropTypes from 'prop-types'
 import {
-  HStack,
-  Checkbox,
-  IconButton,
-  useColorMode,
   Box,
+  Checkbox,
+  HStack,
+  IconButton,
   keyframes,
+  useColorMode,
   usePrefersReducedMotion
 } from '@chakra-ui/react'
-import { RiDeleteBin4Line } from 'react-icons/ri'
 import { motion } from 'framer-motion'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { RiDeleteBin4Line } from 'react-icons/ri'
 
 const animationKeyframes = keyframes`
   0% { transform: translateY(-20px); opacity: 0; }

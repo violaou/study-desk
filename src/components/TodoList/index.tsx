@@ -1,22 +1,24 @@
-import { SetStateAction, useState } from 'react'
+// import { AddIcon } from '@chakra-ui/icons'
 import {
-  Heading,
-  Stack,
-  Input,
-  Button,
-  IconButton,
-  InputRightElement,
-  InputGroup,
-  ButtonGroup,
   Box,
-  Text,
-  Divider
+  Button,
+  ButtonGroup,
+  Divider,
+  Heading,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Stack,
+  Text
 } from '@chakra-ui/react'
-import { AddIcon } from '@chakra-ui/icons'
-import TodoItem from './TodoItem'
+import { SetStateAction, useState } from 'react'
+import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
+import TodoItem from './TodoItem'
+
 export default function TodoList() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [values, setValues] = useState<any[]>([])
   const [inputValue, setInputValue] = useState('')
 

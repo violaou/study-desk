@@ -1,13 +1,15 @@
-import { useState, useEffect } from 'react'
 import {
-  HStack,
-  Heading,
   Button,
+  Heading,
+  HStack,
   IconButton,
-  Tooltip,
-  Text
+  Text,
+  Tooltip
 } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
+import React from 'react'
 import { CgSandClock } from 'react-icons/cg'
+
 import isDev from '../utils/utils'
 
 export default function Clock() {
@@ -28,13 +30,13 @@ export default function Clock() {
       setTime(newDate)
     }, 1000)
     return () => clearInterval(timerId)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showSeconds])
 
   const setTimer = () => {
     setRunTimer(!runTimer)
   }
   useEffect(() => {
+    // eslint-disable-next-line no-undef
     let countdownId: NodeJS.Timeout | undefined
     if (runTimer) {
       if (!stopwatch) return () => clearInterval(countdownId)
@@ -46,7 +48,6 @@ export default function Clock() {
       setStopwatch(20)
     }
     return () => clearInterval(countdownId)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [runTimer, stopwatch])
 
   return (

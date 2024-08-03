@@ -1,10 +1,13 @@
-import { Text, Box, Heading } from '@chakra-ui/react'
-import SoundPlayer from './SoundPlayer'
+import { Box, Heading, Text } from '@chakra-ui/react'
+import React from 'react'
 import styled from 'styled-components'
-import ambientCafe from '/@assets/audio/restaurant-ambience_binaural.mp3'
-import rain from '/@assets/audio/mixkit-light-rain-loop-1253.wav'
+
 import heavyRain from '/@assets/audio/mixkit-intense-rain-loop-1246.wav'
+import rain from '/@assets/audio/mixkit-light-rain-loop-1253.wav'
+import ambientCafe from '/@assets/audio/restaurant-ambience_binaural.mp3'
 import { Sound } from '/src/utils/types'
+
+import SoundPlayer from './SoundPlayer'
 
 const CAFE = {
   id: 'cafe',
@@ -46,6 +49,7 @@ const StyledTitle = styled(Text)`
 
 export default function SoundBoard() {
   return (
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     <Box spacing={6} justifyContent="space-between" minWidth="20vw">
       <Box display="flex" justifyContent="space-between" alignItems="baseline">

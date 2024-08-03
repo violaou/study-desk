@@ -1,18 +1,20 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { Clock, TodoList, Header, SoundBoard } from './components'
-import { Box, useColorMode, VStack } from '@chakra-ui/react'
-import { GIFS, VIGNETTE, LINES } from './utils/constants'
-import { useEffect, useState } from 'react'
 import './index.css'
+import '@fontsource-variable/martian-mono'
+
+import { Box, useColorMode, VStack } from '@chakra-ui/react'
 import {
   ChakraProvider,
-  theme as chakraTheme,
-  extendTheme,
   defineStyle,
-  defineStyleConfig
+  defineStyleConfig,
+  extendTheme,
+  theme as chakraTheme
 } from '@chakra-ui/react'
-import '@fontsource-variable/martian-mono'
+import React from 'react'
+import { useEffect, useState } from 'react'
+import ReactDOM from 'react-dom/client'
+
+import { Clock, Header, SoundBoard, TodoList } from './components'
+import { GIFS, LINES, VIGNETTE } from './utils/constants'
 
 const unselectable = defineStyle({
   userSelect: 'none'

@@ -1,5 +1,6 @@
-import { Heading, HStack, IconButton, useColorMode } from '@chakra-ui/react'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
+import { Heading, HStack, IconButton, useColorMode } from '@chakra-ui/react'
+import React from 'react'
 import styled from 'styled-components'
 
 const StyledHStack = styled(HStack)`
