@@ -4,11 +4,13 @@
 
 
 ### Run
+Install: `npm install --legacy-peer-deps`
+
 Local: `npm run start`
 
-Build: `npm run build`
+Build: `npm run build --base=/dist/`
 
-Deploy: `firebase deploy --only hosting `
+Deploy: `firebase deploy --only hosting`
 
 
 ----

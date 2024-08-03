@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "vite",
     "start": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build --base=/dist/",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "publish": "build && firebase deploy --only hosting"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
@@ -26,13 +27,12 @@
     "uuid": "^10.0.0"
   },
   "devDependencies": {
+    "@types/node": "^20.14.12",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@types/uuid": "^10.0.0",
     "@vitejs/plugin-react-swc": "^3.7.0",
-    "eslint": "^9.7.0",
-    "eslint-plugin-react": "^7.34.4",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-react-refresh": "^0.4.8",
+    "typescript": "^5.5.3",
     "vite": "^5.3.3"
   }
 }

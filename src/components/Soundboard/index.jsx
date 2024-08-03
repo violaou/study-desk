@@ -1,22 +1,24 @@
 import { Text, Box, Heading } from '@chakra-ui/react';
 import SoundPlayer from './SoundPlayer';
 import styled from 'styled-components';
+import ambientCafe from '/@assets/audio/restaurant-ambience_binaural.mp3';
+import rain from '/@assets/audio/mixkit-light-rain-loop-1253.wav';
+import heavyRain from '/@assets/audio/mixkit-intense-rain-loop-1246.wav';
 // import { GoMute } from 'react-icons/go'
 
-// https://www.youtube.com/watch?v=0fFUfM0u3Sk
 const CAFE = {
     id: 'cafe',
-    location: 'src/assets/audio/restaurant-ambience_binaural.mp3',
+    location: ambientCafe,
     name: 'Cafe',
 };
 const LIGHT_RAIN = {
     id: 'lightRain',
-    location: 'src/assets/audio/mixkit-light-rain-loop-1253.wav',
+    location: rain,
     name: 'Light Rain',
 };
 const HEAVY_RAIN = {
     id: 'heavyRain',
-    location: 'src/assets/audio/mixkit-intense-rain-loop-1246.wav',
+    location: heavyRain,
     name: 'Heavy Rain',
 };
 const defaultSounds = [CAFE, LIGHT_RAIN, HEAVY_RAIN];
@@ -31,6 +33,7 @@ const StyledPlayer = styled.div`
 
 export default function SoundBoard() {
     return (
+        // @ts-ignore
         <Box spacing={6} justifyContent="space-between" minWidth="20vw">
             <Box display="flex" justifyContent="space-between" alignItems="baseline">
                 <Heading size="md">Ambient Sounds</Heading>
@@ -41,11 +44,15 @@ export default function SoundBoard() {
                         <Text className="unselectable" fontSize="sm">
                             {name}
                         </Text>
-                        <SoundPlayer id={id} file={location} options={defaultOptions} />
+                        <SoundPlayer
+                            // @ts-ignore
+                            id={id}
+                            file={location}
+                            options={defaultOptions}
+                        />
                     </StyledPlayer>
                 );
             })}
-            {/* <SoundPlayer id='3r_Z5AYJJd4' file='3r_Z5AYJJd4' options={defaultOptions} stream /> */}
         </Box>
     );
 }

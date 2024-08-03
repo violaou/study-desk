@@ -5,6 +5,9 @@ import { useEffect } from 'react';
 import { useAudioPlayer } from 'react-use-audio-player';
 import useInteraction from '../../custom hooks/useInteraction';
 
+/**
+ * @param {{ file: any; options: any; }} params
+ */
 export default function SoundPlayer(params) {
     const { file, options } = params;
     const interacted = useInteraction();
@@ -17,6 +20,9 @@ export default function SoundPlayer(params) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [interacted, file]);
 
+    /**
+     * @param {number} val
+     */
     function adjustVolume(val) {
         audio.setVolume(val / 100);
     }
