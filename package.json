@@ -1,0 +1,42 @@
+{
+  "name": "study-desk",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "start": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "publish": "build && firebase deploy --only hosting"
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^2.1.1",
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@fontsource-variable/martian-mono": "^5.0.13",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "framer-motion": "^11.3.2",
+    "latest": "^0.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.2.1",
+    "react-use-audio-player": "^2.2.0",
+    "styled-components": "^6.1.12",
+    "stylis": "^4.3.2",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.12",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@types/uuid": "^10.0.0",
+    "@vitejs/plugin-react-swc": "^3.7.0",
+    "prettier": "3.3.3",
+    "typescript": "^5.5.3",
+    "vite": "^5.3.3"
+  }
+}
