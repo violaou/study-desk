@@ -1,7 +1,7 @@
 import './index.css'
 import '@fontsource-variable/martian-mono'
 
-import { Box, useColorMode, VStack } from '@chakra-ui/react'
+import { Box, Heading, useColorMode, VStack } from '@chakra-ui/react'
 import {
   ChakraProvider,
   defineStyle,
@@ -12,9 +12,10 @@ import {
 import React from 'react'
 import { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom/client'
+import styled from 'styled-components'
 
-import { Clock, Header, SoundBoard, TodoList } from './components'
-import { GIFS, LINES, VIGNETTE } from './utils/constants'
+import { Clock, Footer, Header, SoundBoard, TodoList } from './components'
+import { GIFS, isDev, LINES, VIGNETTE } from './utils'
 
 const unselectable = defineStyle({
   userSelect: 'none'
@@ -41,6 +42,10 @@ const theme = extendTheme({
   components: { Heading: headingTheme }
 })
 
+const StyledFooter = styled(Footer)`
+  margin-top: auto;
+`
+
 function App() {
   const { colorMode } = useColorMode()
   const [bg, setBg] = useState(GIFS[(GIFS.length * Math.random()) | 0])
@@ -58,10 +63,16 @@ function App() {
 
   return (
     <>
+      {isDev() && (
+        <Heading size="4xl" noOfLines={1}>
+          DEVMODE
+        </Heading>
+      )}
       <VStack
         className="content"
         spacing={4}
         filter={'blur(0.3px)'}
+        height={'100vh'}
         _before={{
           filter:
             colorMode === 'light'
@@ -83,6 +94,7 @@ function App() {
           <TodoList />
           <SoundBoard />
         </Box>
+        <StyledFooter />
       </VStack>
       <Box className="crt" sx={{ backgroundImage: LINES }} />
       <Box className="vignette" sx={{ backgroundImage: VIGNETTE }} />
