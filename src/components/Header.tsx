@@ -10,7 +10,7 @@ export default function Header() {
   const { colorMode, toggleColorMode } = useColorMode()
   return (
     <StyledHStack spacing={4} justifyContent="space-between">
-      <Heading>study desk</Heading>
+      <Heading className="unselectable">study desk</Heading>
       <IconButton
         size="lg"
         aria-label="Remove task"
