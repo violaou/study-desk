@@ -16,13 +16,23 @@ const StyledTimeContainer = styled.div`
   gap: 0.5rem;
 `
 
+const StyledTimerIcon = styled(IconButton)<{ isTimerRunning?: boolean }>`
+  ${(props) => props.isTimerRunning && 'animation: spin 3s linear infinite;'}
+  @keyframes spin {
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+`
+
 export default function Clock() {
   const [time, setTime] = useState(
     new Date().toLocaleTimeString([], { timeStyle: 'medium' })
   )
   const [showSeconds, setShowSec] = useState(true)
   const [stopwatch, setStopwatch] = useState(20)
-  const [runTimer, setRunTimer] = useState(false)
+  const [isTimerRunning, setIsTimerRunning] = useState(false)
   const Bell = new Audio(BellPath)
 
   const toggleSeconds = () => setShowSec(!showSeconds)
@@ -37,14 +47,13 @@ export default function Clock() {
   }, [showSeconds])
 
   const setTimer = () => {
-    setRunTimer(!runTimer)
+    setIsTimerRunning(!isTimerRunning)
   }
   useEffect(() => {
     // eslint-disable-next-line no-undef
     let countdownId: NodeJS.Timeout | undefined
-    if (runTimer) {
+    if (isTimerRunning) {
       if (stopwatch === 0) Bell.play()
-
       if (!stopwatch) return () => clearInterval(countdownId)
       countdownId = setInterval(
         () => setStopwatch(stopwatch - 1),
@@ -54,7 +63,7 @@ export default function Clock() {
       setStopwatch(20)
     }
     return () => clearInterval(countdownId)
-  }, [runTimer, stopwatch])
+  }, [isTimerRunning, stopwatch])
 
   return (
     <HStack>
@@ -66,8 +75,9 @@ export default function Clock() {
       <Text className="unselectable"> | </Text>
       <Tooltip label={`Pomodoro Timer: ${stopwatch}m remaining`}>
         <StyledTimeContainer onClick={setTimer}>
-          <IconButton
-            size=""
+          <StyledTimerIcon
+            isTimerRunning={!!stopwatch && isTimerRunning}
+            size="small"
             variant="unstyled"
             icon={stopwatch ? <CgSandClock /> : <MdOutlineRefresh />}
             aria-label={'timer'}
